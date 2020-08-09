@@ -1,42 +1,75 @@
-## Project Description
+# Project Description
 
-Given a 2D point vector field as input (which for this project a vector vield is defined as a convex triangle mesh with each vertex in the mesh having a vector associated with it), retriangulate the mesh in a way that better aligns with the overall "flow" of the mesh's vectors. The goal of this assignment was loosely as follows:
+The goal of this project is converting an input point cloud with corresponding vectors at each point (also known as a vector field) into an initial triangle mesh via delaunay triangulation. The initial triangle mesh is then altered to output a new triangle mesh where each triangle has approximately one of its three edges following the overall vector flow path (and minimizes the number of added vertices and edges such that the triangle mesh is still aesthetically pleasing). The flow path is computed as a collection of individual points with their corresponding vectors derived by their containing triangle’s normalized berycentric coordinates (NBCs).
 
+## Triangulation, Point Containment, and Normalized Berycentric Coordinates (NBCs)
 
+From the vector field input, the initial step is to construct a preliminary triangle mesh from the point cloud. A simple implementation for this includes using a quadratic approach to the well-known delaunay triangulation algorithm. Triangulation is necessary since a new query point P needs to be contained by three corresponding traingle vertices to express P in the form of NBCs. After triangulation, a few mathematical operations are performed to find the triangle containing query point P, and then P can be expressed as a form of the triple of NBCs from the triangle’s three vertices. Finally, the coefficients of the NBCs of point P can be used to determine the vector (V(P)) corresponding to point P.
 
-## Implementation Details
+## Traces & Retriangulation
 
+The concept of a trace is to start at an arbitrary query point P, calculate the vector at that query point, and travel a small distance along that vector to a new query point. This process is repeated until one of the following conditions are met:
 
+<ol>
+  <li> The trace exits the triangle mesh </li>
+  <li> The trace pierces an already traveled to triangle </li>
+</ol>
 
+When one trace ends, new traces are started and computed until all triangles have been reached. This creates an approximation of the overall flow of the vector field.
 
-### Markdown
+While we trace through the mesh, the collection of traces are computed and we detect when a particular trace crosses into a new triangle. When this happens, we store the midpoint of the local trace for an individual triangle. These stored trace midpoints are combined with the original point cloud vertices and the delaunay triangulation algorithm is ran  using this new collection of vertices. Although this approach introduces a number of new vertices (and consequently new triangles) to the triangle mesh, the edges from the retriangulation better aligns with the vectors from the vector field.
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+## Details
 
-```markdown
-Syntax highlighted code block
+Since the mesh we are dealing with is always a triangle mesh, the right turn test is sufficient for point containment testing. For a triangle ABC and query point P, the right turn test is as follows:
 
-# Header 1
-## Header 2
-### Header 3
+return (AB:AP ≥ 0 == BC:BP ≥ 0) && (BC:BP ≥ 0 == CA:CP ≥ 0)   (1)
 
-- Bulleted
-- List
+Where “ : “ is the det operator between two vectors. The det operator is equal to the dot product after first rotating the second vector in the operation by 90 degrees.
+Note that the det product equal to zero is included so that a point on the triangle’s edge counts as being contained.
 
-1. Numbered
-2. List
+Furthermore, query point P inside triangle ABC (determined by point containment testing) can be expressed as NBCs:
 
-**Bold** and _Italic_ and `Code` text
+P = aA + bB + cC     (2)
 
-[Link](url) and ![Image](src)
-```
+With some algebra, and the fact that a + b + c = 1 (since the berycentric coordinates are normalized), this can be reduced to:
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+AP = bAB + cAC
 
-### Jekyll Themes
+where  (AP:AC) / (AB:AC) = b, (AP:AB) / (AC:AB) = c,and a = 1 - b - c
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/ChadHayes91/Vector_Field_Simulation/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+Similarly, the vector at point P (refered to as P’) can be computed with knowing the coefficients a, b, and c along with the vectors at points A, B, and C (denoted as A’, B’ and C’) using the formula:
 
-### Support or Contact
+P^' = aA^' + bB^' + cC'     (3)
 
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+After computing P’, the next point in the trace is computed by traveling from point P in the direction of an error-adjusted form of P’ where the methodology for error adjusting is specified in reference [1].  The pseudocode for the generation of all traces for a particular triangle mesh is as follows:
+	
+   Boolean Array T[number of triangles] initialized to all false;
+   Repeat until all elements in T are true:
+      Consider the midpoint of all 3 edges for a triangle where T is false;
+      For each edge midpoint (P) in the previous step:
+         İnt numTrianglesReached = ComputeTrace(P);
+        MaxTrace ← max(numTrianglesReached, MaxTrace);
+     Draw(MaxTrace);
+   
+Where ComputeTrace(P) is:
+
+ T[FindContainingTriangle(P)] = true; // using formula #1 on the previous page
+ İnt maximum_iterations = 5000;
+ Int numTrianglesReached = 1;
+ While (P has not exited the mesh && trace iterations < maximum_iterations 
+ && P has not visited a triangle where T is true):
+      t = FindContaningTriangle(P);     // using formula #1 on the previous page
+      P’ = ComputeVectorAt(P);    // using the error adjusted form from formula #3
+      P_next = P + P’;
+      t_next = FindContainingTriangle(P_next);
+      İf (t_next != t):
+         T[t_next] = true;
+         numTrianglesReached++;
+      P = P_next;
+ return numTrianglesReached;
+
+As previously mentioned, the midpoint of a trace for each triangle (when MaxTrace is being computed) is stored, and the combination of the original vertices in the point cloud and these additional stored vertices are retrianguled together, using the same delaunay triangulation algorithm. Note that once a trace starting point is selected, that trace is run in both directions of the vector field, since this genreally provides a better looking triangle mesh output.
+
+## Results
+
