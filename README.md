@@ -1,8 +1,13 @@
-## Welcome to GitHub Pages
+## Project Description
 
-You can use the [editor on GitHub](https://github.com/ChadHayes91/Vector_Field_Simulation/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+Given a 2D point vector field as input (which for this project a vector vield is defined as a convex triangle mesh with each vertex in the mesh having a vector associated with it), retriangulate the mesh in a way that better aligns with the overall "flow" of the mesh's vectors. The goal of this assignment was loosely as follows:
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+
+
+## Implementation Details
+
+
+
 
 ### Markdown
 
