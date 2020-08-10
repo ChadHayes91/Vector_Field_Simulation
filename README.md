@@ -45,7 +45,7 @@ P' = aA' + bB' + cC'     (3)
 
 After computing P’, the next point in the trace is computed by traveling from point P in the direction of an error-adjusted form of P’ where the methodology for error adjusting is specified in reference [1].  The pseudocode for the generation of all traces for a particular triangle mesh is as follows:
 	
-   ![](/Images/ComputeTraceAlg.png)
+   ![](/Images/ComputeTraceAlg.PNG)
    
 Where ComputeTrace(P) is:
 
