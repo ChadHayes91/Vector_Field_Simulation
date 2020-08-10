@@ -6,7 +6,6 @@ The goal of this project is converting an input point cloud with corresponding v
     <img src="/Images/InputVectorFieldMesh.png" width="250" height = "250">
     <figcaption>Example of an Input Mesh (Assumed Given)</figcaption>
 </figure>
-<img src="/Images/InputVectorFieldMesh.png" width="200" height = "300">
 
 ## Triangulation, Point Containment, and Normalized Berycentric Coordinates (NBCs)
 
