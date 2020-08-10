@@ -45,24 +45,11 @@ P' = aA' + bB' + cC'     (3)
 
 After computing P’, the next point in the trace is computed by traveling from point P in the direction of an error-adjusted form of P’ where the methodology for error adjusting is specified in reference [1].  The pseudocode for the generation of all traces for a particular triangle mesh is as follows:
 	
-   ![](/Images/ComputeTraceAlg.PNG)
+![](/Images/TraceGenerationAlg.PNG)
    
 Where ComputeTrace(P) is:
 
- T[FindContainingTriangle(P)] = true; // using formula #1 on the previous page
- İnt maximum_iterations = 5000;
- Int numTrianglesReached = 1;
- While (P has not exited the mesh && trace iterations < maximum_iterations 
- && P has not visited a triangle where T is true):
-      t = FindContaningTriangle(P);     // using formula #1 on the previous page
-      P’ = ComputeVectorAt(P);    // using the error adjusted form from formula #3
-      P_next = P + P’;
-      t_next = FindContainingTriangle(P_next);
-      İf (t_next != t):
-         T[t_next] = true;
-         numTrianglesReached++;
-      P = P_next;
- return numTrianglesReached;
+ ![](/Images/ComputeTraceAlg.PNG)
 
 As previously mentioned, the midpoint of a trace for each triangle (when MaxTrace is being computed) is stored, and the combination of the original vertices in the point cloud and these additional stored vertices are retrianguled together, using the same delaunay triangulation algorithm. Note that once a trace starting point is selected, that trace is run in both directions of the vector field, since this genreally provides a better looking triangle mesh output.
 
