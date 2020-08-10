@@ -2,7 +2,7 @@
 
 The goal of this project is converting an input point cloud with corresponding vectors at each point (also known as a vector field) into an initial triangle mesh via delaunay triangulation. The initial triangle mesh is then altered to output a new triangle mesh where each triangle has approximately one of its three edges following the overall vector flow path (and minimizes the number of added vertices and edges such that the triangle mesh is still aesthetically pleasing). The flow path is computed as a collection of individual points with their corresponding vectors derived by their containing triangle’s normalized berycentric coordinates (NBCs).
 
-![](/Images/InputVectorFieldMesh.PNG)
+![Given Input Triangle Mesh](/Images/InputVectorFieldMesh.png)
 
 ## Triangulation, Point Containment, and Normalized Berycentric Coordinates (NBCs)
 
