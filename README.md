@@ -45,13 +45,7 @@ P' = aA' + bB' + cC'     (3)
 
 After computing P’, the next point in the trace is computed by traveling from point P in the direction of an error-adjusted form of P’ where the methodology for error adjusting is specified in reference [1].  The pseudocode for the generation of all traces for a particular triangle mesh is as follows:
 	
-   Boolean Array T[number of triangles] initialized to all false;
-   Repeat until all elements in T are true:
-      Consider the midpoint of all 3 edges for a triangle where T is false;
-      For each edge midpoint (P) in the previous step:
-         İnt numTrianglesReached = ComputeTrace(P);
-        MaxTrace ← max(numTrianglesReached, MaxTrace);
-     Draw(MaxTrace);
+   ![](/Images/ComputeTraceAlg.png)
    
 Where ComputeTrace(P) is:
 
