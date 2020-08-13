@@ -89,8 +89,8 @@ Since we recompute the triangle mesh using the delaunay triangulation algorithm,
 </p>
 
 <p align = "center">
-   Figure 3: (repeated for reference)
-   Figure 4: mesh after retriangulation
+   Figure 3: (repeated for reference) &nbsp;
+   Figure 4: mesh after retriangulation &nbsp;
    Figure 5: retriangulated mesh with traces
 </p>
 
