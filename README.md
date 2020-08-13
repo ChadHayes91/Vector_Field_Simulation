@@ -67,5 +67,12 @@ Where ComputeTrace(P) is:
 
 As previously mentioned, the midpoint of a trace for each triangle (when MaxTrace is being computed) is stored, and the combination of the original vertices in the point cloud and these additional stored vertices are retrianguled together, using the same delaunay triangulation algorithm. Note that once a trace starting point is selected, that trace is run in both directions of the vector field, since this genreally provides a better looking triangle mesh output.
 
+<p align="center">
+  <img width="305" height="305" src="/Images/TracesWithVertices.PNG">
+</p>
+<p align = "center">
+   best traces with their vertices for each triangle
+</p>
+
 ## Results
 
