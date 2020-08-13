@@ -30,7 +30,7 @@ While we trace through the mesh, the collection of traces are computed and we de
   <img width="305" height="305" src="/Images/AllTraces.PNG">
 </p>
 <p align = "center">
-   example traces starting at border edges
+   example traces starting from border edges
 </p>
 
 ## Details
