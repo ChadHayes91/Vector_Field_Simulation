@@ -6,7 +6,7 @@ The goal of this project is converting an input point cloud with corresponding v
   <img width="280" height="280" src="/Images/InputVectorFieldMesh.png">
 </p>
 <p align = "center">
-   example of an input triangle mesh
+   Figure 1: example of an input triangle mesh
 </p>
 
 ## Triangulation, Point Containment, and Normalized Berycentric Coordinates (NBCs)
@@ -30,7 +30,7 @@ While we trace through the mesh, the collection of traces are computed and we de
   <img width="305" height="305" src="/Images/AllTraces.PNG">
 </p>
 <p align = "center">
-   example traces starting from border edges
+   Figure 2: example traces starting from border edges
 </p>
 
 ## Details
@@ -71,7 +71,7 @@ As previously mentioned, the midpoint of a trace for each triangle (when MaxTrac
   <img width="305" height="305" src="/Images/TracesWithVertices.PNG">
 </p>
 <p align = "center">
-   best traces with midpoint vertices
+   Figure 3: best (longest) traces with midpoint vertices
 </p>
 
 ## Results
