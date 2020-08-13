@@ -71,7 +71,7 @@ As previously mentioned, the midpoint of a trace for each triangle (when MaxTrac
   <img width="305" height="305" src="/Images/TracesWithVertices.PNG">
 </p>
 <p align = "center">
-   best traces with their vertices for each triangle
+   best traces with midpoint vertices
 </p>
 
 ## Results
