@@ -76,3 +76,15 @@ As previously mentioned, the midpoint of a trace for each triangle (when MaxTrac
 
 ## Results
 
+### Output Mesh Properties
+
+For an input point cloud with a number of points n, the original triangulation creates a mesh with 2n – 2 – b triangles where b is the number of vertices in the convex hull of the point cloud. For normal meshes, the number of triangles exceeds the number of vertices, and since our trace method creates a new vertex for every triangle, the number of vertices more than doubles after retriangulation (b actually remains constant under our method between the two triangulations). However, the new mesh contains a number of edges which follow the trace, approximately equal to the total number of triangles divided by three. 
+
+Since we recompute the triangle mesh using the delaunay triangulation algorithm, there is no guarentee that the number of edges that follow the traces is exactly one third of the number of triangles, but over numerous iterations of testing, we consistently observed this was the case. Note that our approach only generates convex meshes, since the output of delaunay triangulation algorithm will always be convex (this might be desirable or not depending on the application).
+
+<p align="center">
+  <img width="305" height="305" src="/Images/TracesWithVertices.PNG">
+  <img width="305" height="305" src="/Images/Retriangulation.PNG">
+  <img width="305" height="305" src="/Images/RetriangulationWithTraces.PNG">	
+</p>
+
