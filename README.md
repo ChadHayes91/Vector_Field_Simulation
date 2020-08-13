@@ -6,7 +6,7 @@ The goal of this project is converting an input point cloud with corresponding v
   <img width="280" height="280" src="/Images/InputVectorFieldMesh.png">
 </p>
 <p align = "center">
-   Example of an input triangle mesh
+   example of an input triangle mesh
 </p>
 
 ## Triangulation, Point Containment, and Normalized Berycentric Coordinates (NBCs)
