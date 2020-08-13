@@ -11,7 +11,14 @@ The goal of this project is converting an input point cloud with corresponding v
 
 ## Triangulation, Point Containment, and Normalized Berycentric Coordinates (NBCs)
 
-From the vector field input, the initial step is to construct a preliminary triangle mesh from the point cloud. A simple implementation for this includes using a quadratic approach to the well-known delaunay triangulation algorithm. Triangulation is necessary since a new query point P needs to be contained by three corresponding traingle vertices to express P in the form of NBCs. After triangulation, a few mathematical operations are performed to find the triangle containing query point P, and then P can be expressed as a form of the triple of NBCs from the triangle’s three vertices. Finally, the coefficients of the NBCs of point P can be used to determine the vector (V(P)) corresponding to point P.
+From the vector field input, the initial step is to construct a preliminary triangle mesh from the point cloud. A simple implementation for this includes using a quadratic approach to the well-known delaunay triangulation algorithm. Triangulation is necessary since a new query point P needs to be contained by three corresponding traingle vertices to express P in the form of NBCs. After triangulation, a few mathematical operations are performed to find the triangle containing query point P, and then P can be expressed as a form of the triple of NBCs from the triangle’s three vertices. Finally, the coefficients of the NBCs of point P can be used to determine the vector (V(P)) corresponding to every single possible point P.
+
+<p align="center">
+  <img width="280" height="280" src="/Images/AllTraces.PNG">
+</p>
+<p align = "center">
+   example traces starting at border edges
+</p>
 
 ## Traces & Retriangulation
 
