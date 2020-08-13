@@ -13,13 +13,6 @@ The goal of this project is converting an input point cloud with corresponding v
 
 From the vector field input, the initial step is to construct a preliminary triangle mesh from the point cloud. A simple implementation for this includes using a quadratic approach to the well-known delaunay triangulation algorithm. Triangulation is necessary since a new query point P needs to be contained by three corresponding traingle vertices to express P in the form of NBCs. After triangulation, a few mathematical operations are performed to find the triangle containing query point P, and then P can be expressed as a form of the triple of NBCs from the triangle’s three vertices. Finally, the coefficients of the NBCs of point P can be used to determine the vector (V(P)) corresponding to every single possible point P.
 
-<p align="center">
-  <img width="305" height="305" src="/Images/AllTraces.PNG">
-</p>
-<p align = "center">
-   example traces starting at border edges
-</p>
-
 ## Traces & Retriangulation
 
 The concept of a trace is to start at an arbitrary query point P, calculate the vector at that query point, and travel a small distance along that vector to a new query point. This process is repeated until one of the following conditions are met:
@@ -32,6 +25,13 @@ The concept of a trace is to start at an arbitrary query point P, calculate the 
 When one trace ends, new traces are started and computed until all triangles have been reached. This creates an approximation of the overall flow of the vector field.
 
 While we trace through the mesh, the collection of traces are computed and we detect when a particular trace crosses into a new triangle. When this happens, we store the midpoint of the local trace for an individual triangle. These stored trace midpoints are combined with the original point cloud vertices and the delaunay triangulation algorithm is ran  using this new collection of vertices. Although this approach introduces a number of new vertices (and consequently new triangles) to the triangle mesh, the edges from the retriangulation better aligns with the vectors from the vector field.
+
+<p align="center">
+  <img width="305" height="305" src="/Images/AllTraces.PNG">
+</p>
+<p align = "center">
+   example traces starting at border edges
+</p>
 
 ## Details
 
