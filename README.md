@@ -5,7 +5,7 @@ The goal of this project is converting an input point cloud with corresponding v
 <p align="center">
   <img width="250" height="250" src="/Images/InputVectorFieldMesh.png">
 </p>
-<p>
+<p align = "center">
    Example of an input triangle mesh
 </p>
 
