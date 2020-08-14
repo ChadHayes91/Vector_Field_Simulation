@@ -83,7 +83,7 @@ For an input point cloud with a number of points n, the original triangulation c
 Since we recompute the triangle mesh using the delaunay triangulation algorithm, there is no guarentee that the number of edges that follow the traces is exactly one third of the number of triangles, but over numerous iterations of testing, we consistently observed this was the case. Note that our approach only generates convex meshes, since the output of delaunay triangulation algorithm will always be convex (this might be desirable or not depending on the application).
 
 <p align="center">
-  <img width="305" height="305" src="./Images/TracesWithVertices.PNG"> &nbsp; &nbsp; &nbsp;
+  <img width="305" height="305" src="https://raw.githubusercontent.com/ChadHayes91/Well-Structured-Vector-Field-Triangulation/master/Images/TracesWithVertices.PNG"> &nbsp; &nbsp; &nbsp; 
   <img width="305" height="305" src="./Images/Retriangulation.PNG"> &nbsp; &nbsp; &nbsp;
   <img width="305" height="305" src="./Images/RetriangulationWithTraces.PNG">	
 </p>
