@@ -95,8 +95,13 @@ Since we recompute the triangle mesh using the delaunay triangulation algorithm,
 
 ### Video Demonstration
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/1Zg7WEag0aA" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+#### Part 1
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/1Zg7WEag0aA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<br>
+<br>
+
+#### Part 2
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/wyOnaYrOd74" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
