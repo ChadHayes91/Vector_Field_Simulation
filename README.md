@@ -93,3 +93,7 @@ Since we recompute the triangle mesh using the delaunay triangulation algorithm,
    Figure 5: retriangulated mesh with traces &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
 </p>
 
+### Video Demonstration
+<iframe width="560" height="315" src="https://www.youtube.com/embed/1Zg7WEag0aA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/wyOnaYrOd74" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
