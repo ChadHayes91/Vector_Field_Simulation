@@ -3,7 +3,7 @@
 The goal of this project is converting an input point cloud with corresponding vectors at each point (also known as a vector field) into an initial triangle mesh via delaunay triangulation. The initial triangle mesh is then altered to output a new triangle mesh where each triangle has approximately one of its three edges following the overall vector flow path (and minimizes the number of added vertices and edges such that the triangle mesh is still aesthetically pleasing). The flow path is computed as a collection of individual points with their corresponding vectors derived by their containing triangle’s normalized berycentric coordinates (NBCs).
 
 <p align="center">
-  <img width="280" height="280" src="/Images/InputVectorFieldMesh.png">
+  <img width="280" height="280" src="./Images/InputVectorFieldMesh.png">
 </p>
 <p align = "center">
    Figure 1: example of an input triangle mesh
@@ -27,7 +27,7 @@ When one trace ends, new traces are started and computed until all triangles hav
 While we trace through the mesh, the collection of traces are computed and we detect when a particular trace crosses into a new triangle. When this happens, we store the midpoint of the local trace for an individual triangle. These stored trace midpoints are combined with the original point cloud vertices and the delaunay triangulation algorithm is ran  using this new collection of vertices. Although this approach introduces a number of new vertices (and consequently new triangles) to the triangle mesh, the edges from the retriangulation better aligns with the vectors from the vector field.
 
 <p align="center">
-  <img width="305" height="305" src="/Images/AllTraces.PNG">
+  <img width="305" height="305" src="./Images/AllTraces.PNG">
 </p>
 <p align = "center">
    Figure 2: example traces starting from border edges
@@ -68,7 +68,7 @@ Where ComputeTrace(P) is:
 As previously mentioned, the midpoint of a trace for each triangle (when MaxTrace is being computed) is stored, and the combination of the original vertices in the point cloud and these additional stored vertices are retrianguled together, using the same delaunay triangulation algorithm. Note that once a trace starting point is selected, that trace is run in both directions of the vector field, since this genreally provides a better looking triangle mesh output.
 
 <p align="center">
-  <img width="305" height="305" src="/Images/TracesWithVertices.PNG">
+  <img width="305" height="305" src="./Images/TracesWithVertices.PNG">
 </p>
 <p align = "center">
    Figure 3: best (longest) traces with midpoint vertices
@@ -83,9 +83,9 @@ For an input point cloud with a number of points n, the original triangulation c
 Since we recompute the triangle mesh using the delaunay triangulation algorithm, there is no guarentee that the number of edges that follow the traces is exactly one third of the number of triangles, but over numerous iterations of testing, we consistently observed this was the case. Note that our approach only generates convex meshes, since the output of delaunay triangulation algorithm will always be convex (this might be desirable or not depending on the application).
 
 <p align="center">
-  <img width="305" height="305" src="/Images/TracesWithVertices.PNG"> &nbsp; &nbsp; &nbsp;
-  <img width="305" height="305" src="/Images/Retriangulation.PNG"> &nbsp; &nbsp; &nbsp;
-  <img width="305" height="305" src="/Images/RetriangulationWithTraces.PNG">	
+  <img width="305" height="305" src="./Images/TracesWithVertices.PNG"> &nbsp; &nbsp; &nbsp;
+  <img width="305" height="305" src="./Images/Retriangulation.PNG"> &nbsp; &nbsp; &nbsp;
+  <img width="305" height="305" src="./Images/RetriangulationWithTraces.PNG">	
 </p>
 
 <p align = "center">
