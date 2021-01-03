@@ -1,6 +1,6 @@
 <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
 
-# Project Description
+# Project Description & Code
 
 Link to Code: [https://github.com/ChadHayes91/Graphics_Vector_Field](https://github.com/ChadHayes91/Graphics_Vector_Field)
 
