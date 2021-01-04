@@ -41,7 +41,7 @@ While we trace through the mesh, the collection of traces are computed and we de
 
 Since the mesh we are dealing with is always a triangle mesh, the right turn test is sufficient for point containment testing. For a triangle ABC and query point P, the right turn test is as follows:
 
-return $$(AB:AP \geq 0 == BC:BP \geq 0) \&\& (BC:BP \geq 0 == CA:CP \geq 0)$$ &nbsp; &nbsp;  (1)
+return $$(AB:AP \geq 0 == BC:BP \geq 0)$$ && $$(BC:BP \geq 0 == CA:CP \geq 0)$$ &nbsp; &nbsp;  (1)
 
 Where “ : “ is the det operator between two vectors. The det operator is equal to the dot product after first rotating the second vector in the operation by 90 degrees. Note that if you had a two dimensional vector $$(x, y)$$, rotation by 90 degrees can be done by mapping $$(x, y)$$ into $$(y, -x)$$.
 
