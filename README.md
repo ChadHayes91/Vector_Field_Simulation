@@ -67,7 +67,8 @@ $$AP = bAB + cAC$$
 
 where $$AP, AB, AC$$ are all vectors.
 
-Additionally, we can define $$a, b, c$$ however we want as long as they sum to one. We've defined them as follows: \frac{AP:AC}{AB:AC} = b$$, $$\frac{AP:AB}{AC:AB} = c$$, and $$a = 1 - b - c$$
+Additionally, we can define $$a, b, c$$ however we want as long as they sum to one. We've defined them as follows: 
+$$\frac{AP:AC}{AB:AC} = b$$, $$\frac{AP:AB}{AC:AB} = c$$, and $$a = 1 - b - c$$
 
 Similarly, the vector at point P (refered to as P’) can be computed with knowing the coefficients $$a, b, c$$ along with the vectors at points $$A, B, C$$ (denoted as $$A’, B’, C’$$) using the formula:
 
