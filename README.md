@@ -54,8 +54,11 @@ $$P = aA + bB + cC$$  &nbsp; &nbsp;   (2)
 With some algebra, and the fact that $$a + b + c = 1$$ (since the berycentric coordinates are normalized), this can be reduced to:
 
 $$P = (1 - b - c)A + bB + cC$$
+<br>
 $$P = A - bA - cA + bB + cC$$
+<br>
 $$P = A + b(B - A) + c(C - A)$$
+<br>
 $$P - A = b(B - A) + c(C - A)$$
 
 Since $$P, A, B, C$$ are all geometric points, subtracting two points gives a vector. We can instead represent this as:
