@@ -10,7 +10,7 @@ The goal of this project is converting an input point cloud with corresponding v
   <img width="280" height="280" src="https://github.com/ChadHayes91/Well-Structured-Vector-Field-Triangulation/blob/master/Images/InputVectorFieldMesh.png?raw=true">
 </p>
 <p align = "center">
-   Figure 1: example of an input triangle mesh
+   Figure 1: example of an input triangle mesh with blue vectors at every point
 </p>
 
 ## Triangulation, Point Containment, and Normalized Berycentric Coordinates (NBCs)
