@@ -41,33 +41,37 @@ While we trace through the mesh, the collection of traces are computed and we de
 
 Since the mesh we are dealing with is always a triangle mesh, the right turn test is sufficient for point containment testing. For a triangle ABC and query point P, the right turn test is as follows:
 
-return (AB:AP ≥ 0 == BC:BP ≥ 0) && (BC:BP ≥ 0 == CA:CP ≥ 0) &nbsp; &nbsp;  (1)
+return $$(AB:AP \geq 0 == BC:BP \geq 0) && (BC:BP \geq 0 == CA:CP \geq 0)$$ &nbsp; &nbsp;  (1)
 
-Where “ : “ is the det operator between two vectors. The det operator is equal to the dot product after first rotating the second vector in the operation by 90 degrees. Note that if you had a two dimensional vector (x, y), rotation by 90 degrees can be done by mapping (x, y) instead into (y, -x).
+Where “ : “ is the det operator between two vectors. The det operator is equal to the dot product after first rotating the second vector in the operation by 90 degrees. Note that if you had a two dimensional vector $$(x, y)$$, rotation by 90 degrees can be done by mapping $$(x, y)$$ into $$(y, -x)$$.
 
 Note that the det product equal to zero is included so that a point on the triangle’s edge counts as being contained.
 
 Furthermore, query point P inside triangle ABC (determined by point containment testing) can be expressed as NBCs:
 
-P = aA + bB + cC  &nbsp; &nbsp;   (2)
+$$P = aA + bB + cC$$  &nbsp; &nbsp;   (2)
 
-With some algebra, and the fact that a + b + c = 1 (since the berycentric coordinates are normalized), this can be reduced to:
+With some algebra, and the fact that $$a + b + c = 1$$ (since the berycentric coordinates are normalized), this can be reduced to:
 
-AP = bAB + cAC
+$$AP = bAB + cAC$$
 
-where  (AP:AC) / (AB:AC) = b, (AP:AB) / (AC:AB) = c, and a = 1 - b - c
+where  $$(AP:AC) / (AB:AC) = b$$, $$(AP:AB) / (AC:AB) = c$$, and $$a = 1 - b - c$$
 
 Similarly, the vector at point P (refered to as P’) can be computed with knowing the coefficients a, b, and c along with the vectors at points A, B, and C (denoted as A’, B’ and C’) using the formula:
 
-P' = aA' + bB' + cC' &nbsp; &nbsp;    (3)
+$$P' = aA' + bB' + cC'$$ &nbsp; &nbsp;    (3)
 
 After computing P’, the next point in the trace is computed by traveling from point P in the direction of an error-adjusted form of P’ where the methodology for error adjusting is specified in reference [1].  The pseudocode for the generation of all traces for a particular triangle mesh is as follows:
 	
-![](/Images/TraceGenerationAlg.PNG)
+<p align="center">
+	![](/Images/TraceGenerationAlg.PNG)
+</p>
    
 Where ComputeTrace(P) is:
 
- ![](/Images/ComputeTraceAlg.PNG)
+<p align="center">
+ 	![](/Images/ComputeTraceAlg.PNG)
+</p>
 
 As previously mentioned, the midpoint of a trace for each triangle (when MaxTrace is being computed) is stored, and the combination of the original vertices in the point cloud and these additional stored vertices are retrianguled together, using the same delaunay triangulation algorithm. Note that once a trace starting point is selected, that trace is run in both directions of the vector field, since this genreally provides a better looking triangle mesh output.
 
