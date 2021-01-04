@@ -55,7 +55,7 @@ With some algebra, and the fact that $$a + b + c = 1$$ (since the berycentric co
 
 $$AP = bAB + cAC$$
 
-where  $$\frac{(AP:AC)}{(AB:AC)} = b$$, $$\frac{(AP:AB)}{(AC:AB)} = c$$, and $$a = 1 - b - c$$
+where  $$\frac{AP:AC}{AB:AC} = b$$, $$\frac{AP:AB}{AC:AB} = c$$, and $$a = 1 - b - c$$
 
 Similarly, the vector at point P (refered to as P’) can be computed with knowing the coefficients a, b, and c along with the vectors at points A, B, and C (denoted as A’, B’ and C’) using the formula:
 
