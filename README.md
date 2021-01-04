@@ -53,11 +53,20 @@ $$P = aA + bB + cC$$  &nbsp; &nbsp;   (2)
 
 With some algebra, and the fact that $$a + b + c = 1$$ (since the berycentric coordinates are normalized), this can be reduced to:
 
+$$P = (1 - b - c)A + bB + cC$$
+$$P = A - bA - cA + bB + cC$$
+$$P = A + b(B - A) + c(C - A)$$
+$$P - A = b(B - A) + c(C - A)$$
+
+Since $$P, A, B, C$$ are all geometric points, subtracting two points gives a vector. We can instead represent this as:
+
 $$AP = bAB + cAC$$
 
-where  $$\frac{AP:AC}{AB:AC} = b$$, $$\frac{AP:AB}{AC:AB} = c$$, and $$a = 1 - b - c$$
+where $$AP, AB, AC$$ are all vectors.
 
-Similarly, the vector at point P (refered to as P’) can be computed with knowing the coefficients a, b, and c along with the vectors at points A, B, and C (denoted as A’, B’ and C’) using the formula:
+Additionally, we can define $$a, b, c$$ however we want as long as they sum to one. We've defined them as follows: \frac{AP:AC}{AB:AC} = b$$, $$\frac{AP:AB}{AC:AB} = c$$, and $$a = 1 - b - c$$
+
+Similarly, the vector at point P (refered to as P’) can be computed with knowing the coefficients $$a, b, c$$ along with the vectors at points $$A, B, C$$ (denoted as $$A’, B’, C’$$) using the formula:
 
 $$P' = aA' + bB' + cC'$$ &nbsp; &nbsp;    (3)
 
