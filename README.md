@@ -55,7 +55,7 @@ With some algebra, and the fact that $$a + b + c = 1$$ (since the berycentric co
 
 $$AP = bAB + cAC$$
 
-where  $$(AP:AC) / (AB:AC) = b$$, $$(AP:AB) / (AC:AB) = c$$, and $$a = 1 - b - c$$
+where  $$\frac{(AP:AC)}{(AB:AC)} = b$$, $$\frac{(AP:AB)}{(AC:AB)} = c$$, and $$a = 1 - b - c$$
 
 Similarly, the vector at point P (refered to as P’) can be computed with knowing the coefficients a, b, and c along with the vectors at points A, B, and C (denoted as A’, B’ and C’) using the formula:
 
@@ -63,15 +63,11 @@ $$P' = aA' + bB' + cC'$$ &nbsp; &nbsp;    (3)
 
 After computing P’, the next point in the trace is computed by traveling from point P in the direction of an error-adjusted form of P’ where the methodology for error adjusting is specified in reference [1].  The pseudocode for the generation of all traces for a particular triangle mesh is as follows:
 	
-<p align="center">
-	![](/Images/TraceGenerationAlg.PNG)
-</p>
-   
+![](/Images/TraceGenerationAlg.PNG)
+
 Where ComputeTrace(P) is:
 
-<p align="center">
- 	![](/Images/ComputeTraceAlg.PNG)
-</p>
+ ![](/Images/ComputeTraceAlg.PNG)
 
 As previously mentioned, the midpoint of a trace for each triangle (when MaxTrace is being computed) is stored, and the combination of the original vertices in the point cloud and these additional stored vertices are retrianguled together, using the same delaunay triangulation algorithm. Note that once a trace starting point is selected, that trace is run in both directions of the vector field, since this genreally provides a better looking triangle mesh output.
 
