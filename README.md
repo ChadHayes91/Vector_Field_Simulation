@@ -4,7 +4,7 @@
 
 Link to Code: [https://github.com/ChadHayes91/Graphics_Vector_Field](https://github.com/ChadHayes91/Graphics_Vector_Field)
 
-The goal of this project is converting an input point cloud with corresponding vectors at each point (also known as a vector field) into an initial triangle mesh via delaunay triangulation. The initial triangle mesh is then altered to output a new triangle mesh where each triangle has approximately one of its three edges following the overall vector flow path (and minimizes the number of added vertices and edges such that the triangle mesh is still aesthetically pleasing). The flow path is computed as a collection of individual points with their corresponding vectors derived by their containing triangle’s normalized berycentric coordinates (NBCs).
+The goal of this project is converting an input point cloud with corresponding vectors at each point (also known as a vector field) into an initial triangle mesh via Delaunay triangulation. The initial triangle mesh is then altered to output a new triangle mesh where each triangle has approximately one of its three edges following the overall vector flow path (and minimizes the number of added vertices and edges such that the triangle mesh is still aesthetically pleasing). The flow path is computed as a collection of individual points with their corresponding vectors derived by their containing triangle’s normalized barycentric coordinates (NBCs).
 
 <p align="center">
   <img width="280" height="280" src="https://github.com/ChadHayes91/Well-Structured-Vector-Field-Triangulation/blob/master/Images/InputVectorFieldMesh.png?raw=true">
@@ -13,9 +13,9 @@ The goal of this project is converting an input point cloud with corresponding v
    Figure 1: example of an input triangle mesh with blue vectors at every point
 </p>
 
-## Triangulation, Point Containment, and Normalized Berycentric Coordinates (NBCs)
+## Triangulation, Point Containment, and Normalized Barycentric Coordinates (NBCs)
 
-From the vector field input, the initial step is to construct a preliminary triangle mesh from the point cloud. A simple implementation for this includes using a quadratic approach to the well-known delaunay triangulation algorithm. Triangulation is necessary since a new query point P needs to be contained by three corresponding traingle vertices to express P in the form of NBCs. After triangulation, a few mathematical operations are performed to find the triangle containing query point P, and then P can be expressed as a form of the triple of NBCs from the triangle’s three vertices. Finally, the coefficients of the NBCs of point P can be used to determine the vector (V(P)) corresponding to every single possible point P.
+From the vector field input, the initial step is to construct a preliminary triangle mesh from the point cloud. A simple implementation for this includes using a quadratic approach to the well-known Delaunay triangulation algorithm. Triangulation is necessary since a new query point P needs to be contained by three corresponding triangle vertices to express P in the form of NBCs. After triangulation, a few mathematical operations are performed to find the triangle containing query point P, and then P can be expressed as a form of the triple of NBCs from the triangle’s three vertices. Finally, the coefficients of the NBCs of point P can be used to determine the vector (V(P)) corresponding to every single possible point P.
 
 ## Traces & Retriangulation
 
@@ -28,7 +28,7 @@ The concept of a trace is to start at an arbitrary query point P, calculate the 
 
 When one trace ends, new traces are started and computed until all triangles have been reached. This creates an approximation of the overall flow of the vector field.
 
-While we trace through the mesh, the collection of traces are computed and we detect when a particular trace crosses into a new triangle. When this happens, we store the midpoint of the local trace for an individual triangle. These stored trace midpoints are combined with the original point cloud vertices and the delaunay triangulation algorithm is ran  using this new collection of vertices. Although this approach introduces a number of new vertices (and consequently new triangles) to the triangle mesh, the edges from the retriangulation better aligns with the vectors from the vector field.
+While we trace through the mesh, the collection of traces are computed and we detect when a particular trace crosses into a new triangle. When this happens, we store the midpoint of the local trace for an individual triangle. These stored trace midpoints are combined with the original point cloud vertices and the Delaunay triangulation algorithm is ran using this new collection of vertices. Although this approach introduces a number of new vertices (and consequently new triangles) to the triangle mesh, the edges from the retriangulation better aligns with the vectors from the vector field.
 
 <p align="center">
   <img width="305" height="305" src="https://github.com/ChadHayes91/Well-Structured-Vector-Field-Triangulation/blob/master/Images/AllTraces.PNG?raw=true">
@@ -51,7 +51,7 @@ Furthermore, query point P inside triangle ABC (determined by point containment 
 
 $$P = aA + bB + cC$$  &nbsp; &nbsp;   (2)
 
-With some algebra, and the fact that $$a + b + c = 1$$ (since the berycentric coordinates are normalized), this can be reduced to:
+With some algebra, and the fact that $$a + b + c = 1$$ (since the barycentric coordinates are normalized), this can be reduced to:
 
 $$P = (1 - b - c)A + bB + cC$$
 <br>
@@ -72,7 +72,7 @@ $$\frac{AP:AC}{AB:AC} = b$$, $$\frac{AP:AB}{AC:AB} = c$$, and $$a = 1 - b - c$$
 
 Note that these formulas are a ratio of dot products to determine how in line the query point $$P$$ is with a particular triangle edge.
 
-Similarly, the vector at point P (refered to as P’) can be computed with knowing the coefficients $$a, b, c$$ along with the vectors at points $$A, B, C$$ (denoted as $$A’, B’, C’$$) using the formula:
+Similarly, the vector at point P (referred to as P’) can be computed with knowing the coefficients $$a, b, c$$ along with the vectors at points $$A, B, C$$ (denoted as $$A’, B’, C’$$) using the formula:
 
 $$P' = aA' + bB' + cC'$$ &nbsp; &nbsp;    (3)
 
@@ -84,7 +84,7 @@ Where ComputeTrace(P) is:
 
  ![](/Images/ComputeTraceAlg.PNG)
 
-As previously mentioned, the midpoint of a trace for each triangle (when MaxTrace is being computed) is stored, and the combination of the original vertices in the point cloud and these additional stored vertices are retrianguled together, using the same delaunay triangulation algorithm. Note that once a trace starting point is selected, that trace is run in both directions of the vector field, since this genreally provides a better looking triangle mesh output.
+As previously mentioned, the midpoint of a trace for each triangle (when MaxTrace is being computed) is stored, and the combination of the original vertices in the point cloud and these additional stored vertices are retrianguled together, using the same Delaunay triangulation algorithm. Note that once a trace starting point is selected, that trace is run in both directions of the vector field, since this generally provides a nicer-looking triangle mesh output.
 
 <p align="center">
   <img width="305" height="305" src="https://github.com/ChadHayes91/Well-Structured-Vector-Field-Triangulation/blob/master/Images/TracesWithVertices.PNG?raw=true">
@@ -99,7 +99,7 @@ As previously mentioned, the midpoint of a trace for each triangle (when MaxTrac
 
 For an input point cloud with a number of points n, the original triangulation creates a mesh with $$2n – 2 – b$$ triangles where b is the number of vertices in the convex hull of the point cloud. For normal meshes, the number of triangles exceeds the number of vertices, and since our trace method creates a new vertex for every triangle, the number of vertices more than doubles after retriangulation (b actually remains constant under our method between the two triangulations). However, the new mesh contains a number of edges which follow the trace, approximately equal to the total number of triangles divided by three. 
 
-Since we recompute the triangle mesh using the delaunay triangulation algorithm, there is no guarentee that the number of edges that follow the traces is exactly one third of the number of triangles, but over numerous iterations of testing, we consistently observed this was the case. Note that our approach only generates convex meshes, since the output of delaunay triangulation algorithm will always be convex (this might be desirable or not depending on the application).
+Since we recompute the triangle mesh using the Delaunay triangulation algorithm, there is no guarantee that the number of edges that follow the traces is exactly one third of the number of triangles, but over numerous iterations of testing, we consistently observed this was the case. Note that our approach only generates convex meshes, since the output of Delaunay triangulation algorithm will always be convex (this might be desirable or not depending on the application).
 
 <p align="center">
   <img width="305" height="305" src="https://github.com/ChadHayes91/Well-Structured-Vector-Field-Triangulation/blob/master/Images/Retriangulation.PNG?raw=true">
